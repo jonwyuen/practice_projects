@@ -19,12 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    YTSearch({ key: API_KEY, term: 'surfboards' }, videos => {
-      this.setState({
-        videos,
-        selectedVideo: videos[0]
-      });
-    });
+    this.videoSearch('surfboards');
   }
 
   videoSearch(term) {
