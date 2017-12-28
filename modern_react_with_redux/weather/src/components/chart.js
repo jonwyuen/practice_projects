@@ -16,7 +16,8 @@ const Chart = props => (
       <SparklinesReferenceLine type="avg" />
     </Sparklines>
     <div>
-      {average(props.data)} {props.units}
+      {average(props.data)}
+      {props.units}
     </div>
   </div>
 );
