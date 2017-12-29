@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
-  render() {
-    const { fields: { title, categories, content }, handleSubmit } = this.props;
-    console.log(this.props.fields);
-
+  renderField(field) {
     return (
-      <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label>{field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <form>
         <h3>Create A New Post</h3>
-        <div className="form-group">
-          <label>Title</label>
-          <input type="text" className="form-control" {...title} />
-        </div>
-        <div className="form-group">
-          <label>Categories</label>
-          <input type="text" className="form-control" {...categories} />
-        </div>
-        <div className="form-group">
-          <label>Content</label>
-          <textarea className="form-control" {...content} />
-        </div>
+        <Field label="Title" name="title" component={this.renderField} />
+        <Field label="Tags" name="tags" component={this.renderField} />
+        <Field label="Content" name="content" component={this.renderField} />
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
@@ -30,18 +27,5 @@ class PostsNew extends Component {
 }
 
 export default reduxForm({
-  form: 'PostsNewForm',
-  fields: ['title', 'categories', 'content']
+  form: 'PostsNewForm'
 })(PostsNew);
-
-// user types something -> records it on app state
-/* state === {
-  form: {
-    PostsNewForm: {
-      title: '...',
-      categories: '...',
-      content: '...'
-    }
-  }
-}
-*/

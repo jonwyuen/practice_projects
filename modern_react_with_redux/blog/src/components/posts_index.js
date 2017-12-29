@@ -4,8 +4,16 @@ import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router-dom';
 
 class PostsIndex extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPosts();
+  }
+
+  renderPosts() {
+    return Object.values(this.props.posts).map(post => (
+      <li className="list-group-item" key={post.id}>
+        {post.title}
+      </li>
+    ));
   }
 
   render() {
@@ -16,10 +24,15 @@ class PostsIndex extends Component {
             Add a Post
           </Link>
         </div>
-        List of blog posts
+        <h3>Posts</h3>
+        <ul>{this.renderPosts()}</ul>
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return { posts: state.posts };
 }
 
 // function mapDispatchToProps(dispatch) {
@@ -27,4 +40,4 @@ class PostsIndex extends Component {
 //   return bindActionCreators({ fetchPosts }, dispatch);
 // }
 
-export default connect(null, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
