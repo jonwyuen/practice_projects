@@ -9,7 +9,7 @@ React + Redux Cycle (Synchronous)
 
 Action Creator -> returns an Action -> Dispatch (makes sure action gets sent to all reducers) -> Reducers
 
-React + Redux Cycle (Async) -> Redux Thunk
+React + Redux Cycle (Async) -> Redux Thunk (action creator returns function)
 
 ```js
 import axios from 'axios';
