@@ -7,7 +7,7 @@ import reducers from './reducers';
 import promise from 'redux-promise';
 
 import PostsIndex from './components/posts_index';
-import PostsNew from './components/posts_new';
+import PostsNew from './components/posts_new_dynamic';
 import PostsShow from './components/posts_show';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
