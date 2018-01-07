@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Colors from './colors';
 import BadModal from './bad_modal';
 import Modal from './modal';
+import NewModal from './new_modal';
 
 export default class App extends Component {
   render() {
@@ -13,11 +14,11 @@ export default class App extends Component {
         <div className="right">
           <h1>Hello</h1><h2>Hello</h2><h3>Hello</h3><h4>Hello</h4><h5>Hello</h5>
           <div>
-            <Modal>
+            <NewModal>
               <h1>A really long amount of Modal Content</h1>
               <p>Etc.</p>
               <Colors />
-            </Modal>
+            </NewModal>
           </div>
         </div>
       </div>
