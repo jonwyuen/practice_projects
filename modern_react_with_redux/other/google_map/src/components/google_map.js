@@ -6,6 +6,11 @@ class Map extends Component {
     return false;
   }
 
+  // always get called when component receives props
+  componentWillReceiveProps(nextProps) {
+    this.map.panTo({ lat: nextProps.lat, lng: nextProps.lng });
+  }
+
   // create google map and append to dom
   componentDidMount() {
     this.map = new google.maps.Map(this.refs.map, {
