@@ -11,17 +11,28 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  generateRandomFloat(min, max, precision) {
+    const factor = Math.pow(10, precision);
+    return Math.round(((max - min) * Math.random() + min) * factor) / factor;
+  }
+
   handleClick() {
+    const randomLat =
+      this.generateRandomFloat(-90, 90, 5) +
+      this.generateRandomFloat(0, 0.00001, 5);
+    const randomLng =
+      this.generateRandomFloat(-180, 180, 5) +
+      this.generateRandomFloat(0, 0.00001, 5);
     this.setState({
-      lat: 40.7128,
-      lng: -74.0059
+      lat: randomLat,
+      lng: randomLng
     });
   }
 
   render() {
     return (
       <div style={{ height: '100%' }}>
-        <button onClick={this.handleClick}>New York</button>
+        <button onClick={this.handleClick}>Random Location</button>
         <Map lat={this.state.lat} lng={this.state.lng} />
       </div>
     );
