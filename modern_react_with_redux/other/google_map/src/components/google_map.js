@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 
 class Map extends Component {
+  // this is a wrapper component, so only want to render this component once
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  // create google map and append to dom
+  componentDidMount() {
+    this.map = new google.maps.Map(this.refs.map, {
+      center: { lat: this.props.lat, lng: this.props.lng },
+      zoom: 8
+    });
+  }
+
   render() {
-    return(
-      <div id='map'></div>
-    )
+    // ref used to get direct reference to dom element
+    return <div id="map" ref="map" />;
   }
 }
 

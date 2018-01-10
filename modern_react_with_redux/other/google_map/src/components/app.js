@@ -8,10 +8,10 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{height: "100%"}}>
-        <Map />
+      <div style={{ height: '100%' }}>
+        <Map lat={-34.397} lng={150.644}/>
       </div>
-    )
+    );
   }
 }
 
