@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const urlStore = {};
+
 // Express config
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
@@ -13,7 +15,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/create', function createShortenedURL(req, res) {
-  // TODO: Implement me
+  let originalUrl = req.body.url;
+  let shortenedUrl = '';
+
   res.render('index');
 });
 
