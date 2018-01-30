@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const urlStore = {};
+let urlStore = {};
 
 // Express config
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,15 +17,24 @@ app.get('/', function (req, res) {
 app.post('/create', function createShortenedURL(req, res) {
   let originalUrl = req.body.url;
   let shortenedUrl = '';
+  let alias = Math.random().toString(36).substring(2,5);
+  if (!urlStore[alias]) {
+    urlStore[alias] = originalUrl;
+  }
+  shortenedUrl = `${req.protocol}://${req.get('host')}/${alias}`
 
-  res.render('index');
+  console.log(urlStore)
+  res.render('index', {shortenedUrl});
 });
 
 app.get('/:urlAlias', function redirectToOriginalURL(req, res) {
   // GET http://127.0.0.1/<url_alias>
   //  => http://example.org/original/url
-
-  res.status(200).send('TODO: Implement me');
+  if (urlStore[req.params.urlAlias]) {
+    res.redirect(urlStore[req.params.urlAlias]);
+  }
+  
+  // res.status(200).send('TODO: Implement me');
 });
 
 // Start server
