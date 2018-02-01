@@ -16,15 +16,16 @@ app.get('/', function (req, res) {
 
 app.post('/create', function createShortenedURL(req, res) {
   let originalUrl = req.body.url;
-  let shortenedUrl = '';
+  // let shortenedUrl = '';
   let alias = Math.random().toString(36).substring(2,5);
-  if (!urlStore[alias]) {
-    urlStore[alias] = originalUrl;
+  while (urlStore[alias]) {
+    alias = Math.random().toString(36).substring(2,5);
   }
-  shortenedUrl = `${req.protocol}://${req.get('host')}/${alias}`
+  urlStore[alias] = originalUrl;
+  // shortenedUrl = `${req.protocol}://${req.get('host')}/${alias}`
 
   console.log(urlStore)
-  res.render('index', {shortenedUrl});
+  res.render('index');
 });
 
 app.get('/:urlAlias', function redirectToOriginalURL(req, res) {
@@ -32,6 +33,8 @@ app.get('/:urlAlias', function redirectToOriginalURL(req, res) {
   //  => http://example.org/original/url
   if (urlStore[req.params.urlAlias]) {
     res.redirect(urlStore[req.params.urlAlias]);
+  } else {
+    res.redirect('/');
   }
   
   // res.status(200).send('TODO: Implement me');
