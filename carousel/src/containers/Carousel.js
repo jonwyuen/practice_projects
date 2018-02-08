@@ -15,11 +15,44 @@ class Carousel extends Component {
     }
   }
 
+  generateCurrentSlides() {
+    let currentSlides = [];
+    let { current, slides } = this.state;
+    for (let i = -1; i < this.props.slidesLimit - 1; i++) {
+      // -1 0 1
+      let slideDiv = null;
+      if (current + i > -1 && current < slides.length) {
+        
+        slideDiv = (
+          <div className="carousel_slide">
+            <Slide />
+          </div>
+        )
+      }
+
+      currentSlides.push(slideDiv);
+    }
+    
+    return currentSlides;
+  }
+
   render() {
     return(
-      <div></div>
+      <div className="carousel_container">
+        <div className="carousel_slides">
+          {this.generateCurrentSlides()}
+        </div>
+        <div className="carousel_buttons">
+          <SliderButton />
+          <SliderButton />
+        </div>
+      </div>
     )
   }
+}
+
+Carousel.defaultProps = {
+  slidesLimit: 3
 }
 
 export default Carousel;
