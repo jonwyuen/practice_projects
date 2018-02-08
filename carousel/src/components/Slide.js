@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Slide = props => {
-  <div></div>
+const Slide = ({ color }) => {
+  <div style={{ backgroundColor: `${color}`}}></div>
 }
 
 export default Slide;
