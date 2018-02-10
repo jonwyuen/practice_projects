@@ -1,7 +1,8 @@
 import React from 'react';
+import './Slide.css';
 
 const Slide = ({ color }) => {
-  <div style={{ backgroundColor: `${color}`}}></div>
+  <div class="slide" style={{ backgroundColor: `${color}`}}></div>
 }
 
 export default Slide;
