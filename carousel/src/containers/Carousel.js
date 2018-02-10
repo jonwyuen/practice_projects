@@ -13,6 +13,11 @@ class Carousel extends Component {
       next: 0,
       canSlide: true,
     }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+
   }
 
   generateCurrentSlides() {
@@ -43,8 +48,8 @@ class Carousel extends Component {
           {this.generateCurrentSlides()}
         </div>
         <div className="carousel_buttons">
-          <SliderButton />
-          <SliderButton />
+          <SliderButton direction="left" handleClick={this.handleClick}/>
+          <SliderButton direction="right" handleClick={this.handleClick}/>
         </div>
       </div>
     )
