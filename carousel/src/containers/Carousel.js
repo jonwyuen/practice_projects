@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Slide from '../components/Slide';
-import SliderButton from '../components/SliderButton';
+import Panel from '../components/Panel';
+import SlideButton from '../components/SlideButton';
 import './Carousel.css';
 
 class Carousel extends Component {
@@ -12,14 +12,26 @@ class Carousel extends Component {
       current: 0,
       next: 0,
       canSlide: true,
+      transitionClass: ""
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.slidePanels = this.slidePanels.bind(this);
   }
 
-  handleClick(e) {
 
+  setCurrent(direction) {
+    let newCurrent = this.state.current;
+    if (!this.state.canSlide) return;
+    if (direction === "right") newCurrent++;
+    else if (direction === "left") newCurrent--;
+
+    if (newCurrent < 0 || newCurrent >= this.state.slides.length) return false;
+    else return newCurrent;
   }
 
+  slidePanels(direction) {
+
+  }
+ 
   generateCurrentSlides() {
     let currentSlides = [];
     let { current, slides } = this.state;
@@ -42,17 +54,15 @@ class Carousel extends Component {
   }
 
   render() {
-    return(
-      <div className="carousel_container">
+    return <div className="carousel_container">
         <div className="carousel_slides">
           {this.generateCurrentSlides()}
         </div>
         <div className="carousel_buttons">
-          <SliderButton direction="left" handleClick={this.handleClick}/>
-          <SliderButton direction="right" handleClick={this.handleClick}/>
+          <SlideButton direction="left" slidePanels={this.slidePanels} />
+          <SlideButton direction="right" slidePanels={this.slidePanels} />
         </div>
-      </div>
-    )
+      </div>;
   }
 }
 
