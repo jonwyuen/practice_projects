@@ -1,0 +1,20 @@
+.grid {
+  border: 2px blue solid;
+  /* width: 400px; */
+  height: 500px;
+  display: grid;
+  /* size of row / size of column */
+  grid-template: 1fr 1fr 1fr / 3fr 50% 1fr;
+  /* repeat(2, 20px 50px): 4 rows/columns, first and third 20px, second and fourth 50px */
+  /* grid-template: repeat(3, 1fr) / 3fr 50% 1fr; */
+  grid-template: repeat(3, 1fr) / 3fr minmax(50px, 300px) 1fr;
+  /* fr considers all avail space */
+  grid-gap: 20px 5px;
+}
+
+.box {
+  background-color: beige;
+  color: black;
+  border-radius: 5px;
+  border: 2px dodgerblue solid;
+}
