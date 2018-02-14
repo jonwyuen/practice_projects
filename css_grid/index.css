@@ -12,6 +12,18 @@
   grid-gap: 20px 5px;
 }
 
+.a {
+  /* The value for grid-row-start should be the row at which you want the grid item to begin. 
+  The value for grid-row-end should be one greater than the row at which you want the grid item to end.*/
+  /* grid-row-start: 5;
+  grid-row-end: 7; */
+  grid-row: 5 / 7;
+  /* When an item spans multiple rows or columns using these properties, it will also include the grid-gap 
+  if any exists. For example, if an item spans two rows of height 100 pixels and there is a ten-pixel grid-gap, 
+  then the item will have a total height of 210 pixels. */
+}
+
+
 .box {
   background-color: beige;
   color: black;
