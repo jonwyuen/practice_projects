@@ -1,10 +1,9 @@
 .grid {
   border: 2px blue solid;
-  /* width: 400px; */
+  width: 400px;
   height: 500px;
   display: grid;
   /* size of row / size of column */
-  grid-template: 1fr 1fr 1fr / 3fr 50% 1fr;
   /* repeat(2, 20px 50px): 4 rows/columns, first and third 20px, second and fourth 50px */
   /* grid-template: repeat(3, 1fr) / 3fr 50% 1fr; */
   grid-template: repeat(3, 1fr) / 3fr minmax(50px, 300px) 1fr;
@@ -21,6 +20,19 @@
   /* When an item spans multiple rows or columns using these properties, it will also include the grid-gap 
   if any exists. For example, if an item spans two rows of height 100 pixels and there is a ten-pixel grid-gap, 
   then the item will have a total height of 210 pixels. */
+}
+
+.b {
+  /* grid-column: 4 / 6; */
+  /* start at col 4 and take up 2 col of space */
+  grid-column: 4 / span 2;
+}
+
+.c {
+  /* grid-row-start grid-column-start grid-row-end grid-column-end */
+  /* takes up col 8 and rows 6,7,8   */
+  grid-area: 6 / 8 / span 3 / span 1;
+
 }
 
 
