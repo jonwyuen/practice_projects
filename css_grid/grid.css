@@ -22,6 +22,19 @@ main {
   space-between (includes an equal amount of space between grid items and no space at either end)
   space-evenly (places an even amount of space between grid items and at either end) */
   justify-content: center;
+  /* align-items: positions grid items along the block, or column axis (top to bottom); set on container */
+  /* start end center stretch */
+  /* w/o setting align-items property, elements will span height of row they are in */
+  /* w/ align-items, elements will be centered vertically inside of their rows, only be as tall as necessary to contain their content */
+  /* if specify height of element, it will not stretch height of row even if align-items: stretch is set */
+  align-items: stretch;
+  /* align-content: positions the rows along the column axis (top to bottom); set on container */
+  /* start (aligns the grid to the top of the grid container) end center stretch 
+  space-around (includes an equal amount of space on each side of a grid element, resulting in double the amount of space between elements as there is before the first and after the last element)
+  space-between (includes an equal amount of space between grid items and no space at either end)
+  space-evenly (places an even amount of space between grid items and at either end) */
+  height: 1600px;
+  align-content: center;
 }
 
 h2 {
