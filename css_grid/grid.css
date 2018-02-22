@@ -1,3 +1,8 @@
+/* implicit grid: determines default behavior for the placement of elements when there are more than fit into the grid specified.
+Default behavior of the implicit grid: items fill up rows first, adding new rows as necessary. 
+New grid rows will only be tall enough to contain the content within them.
+*/
+
 header, footer {
   background-color: #ffa500;
   text-align: center;
@@ -10,7 +15,6 @@ main {
   grid-template-rows: repeat(3, 450px);
   grid-gap: 20px;
   margin-top: 44px;
-  grid-auto-rows: 500px;
   /* justify-items: positions grid items within their columns/along row axis (left to right); set on container */
   /* start end center stretch */
   /* w/o setting justify-items property, elements will span width of column they are in */
@@ -33,8 +37,14 @@ main {
   space-around (includes an equal amount of space on each side of a grid element, resulting in double the amount of space between elements as there is before the first and after the last element)
   space-between (includes an equal amount of space between grid items and no space at either end)
   space-evenly (places an even amount of space between grid items and at either end) */
-  height: 1600px;
+  /* height: 1600px; */
   align-content: center;
+  /* grid-auto-rows specifies the height of implicitly added grid rows.
+  grid-auto-columns specifies the width of implicitly added grid columns. 
+  declared on grid container
+  px, %, fr, repeat()
+  If not specify grid-auto-rows, rows would be auto-adjusted to the height of the content of the grid items. */
+  grid-auto-rows: 500px;
 }
 
 h2 {
@@ -59,6 +69,11 @@ img {
 }
 
 .a {
+  /* align-self specifies how an individual element should position itself with respect to the column axis, 
+  will override align-items for any item on which it is declared */
+  /* justify-self specifies how an individual element should position itself with respect to the row axis, 
+  will override justify-items for any item on which it is declared */
+  /* start end center stretch */
   
 }
 
