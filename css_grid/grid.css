@@ -45,6 +45,12 @@ main {
   px, %, fr, repeat()
   If not specify grid-auto-rows, rows would be auto-adjusted to the height of the content of the grid items. */
   grid-auto-rows: 500px;
+  /* grid-auto-flow specifies whether new elements should be added to rows or columns; declared on grid containers 
+  row: specifies new elements should fill rows from left to right and create new rows when there are too many elements (default)
+  column: specifies new elements should fill columns from top to bottom and create new columns when there are too many elements
+  dense: invokes an algorithm that attempts to fill holes earlier in the grid layout if smaller elements are added (grid-auto-flow: row dense)
+  */
+  grid-auto-flow: column;
 }
 
 h2 {
