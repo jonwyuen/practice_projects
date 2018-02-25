@@ -20,7 +20,6 @@ class Carousel extends Component {
 
   setCurrent(direction) {
     let newCurrent = this.state.current;
-    if (!this.state.canSlide) return;
     if (direction === "right") newCurrent++;
     else if (direction === "left") newCurrent--;
 
@@ -29,7 +28,15 @@ class Carousel extends Component {
   }
 
   slidePanels(direction) {
+    if (!this.state.canSlide) return;
 
+    let newCurrent = this.setCurrent(direction);
+    if (newCurrent === false) return;
+
+    let transitionClass = (direction === 'right') ?
+                    ' carousel_slide_right' :
+                    ' carousel_slide_left';
+    this.setState({ transitionClass, canSlide: false, next: newCurrent });
   }
  
   generateCurrentSlides() {
