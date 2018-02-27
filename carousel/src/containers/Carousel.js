@@ -17,6 +17,9 @@ class Carousel extends Component {
     this.slidePanels = this.slidePanels.bind(this);
   }
 
+  componentWillMount() {
+    // add event listener for transition
+  }
 
   setCurrent(direction) {
     let newCurrent = this.state.current;
@@ -61,8 +64,8 @@ class Carousel extends Component {
   }
 
   render() {
-    return <div className="carousel_container">
-        <div className="carousel_slides">
+    return <div className="carousel_container" ref={el => this.carousel = el}>
+        <div className={`carousel_slides ${transitionClass}`}>
           {this.generateCurrentSlides()}
         </div>
         <div className="carousel_buttons">
