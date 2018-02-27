@@ -63,6 +63,14 @@ class Carousel extends Component {
     return currentSlides;
   }
 
+  reset() {
+    this.setState({
+      current: this.state.next,
+      canSlide: true,
+      transitionClass: ''
+    });
+  }
+
   render() {
     return <div className="carousel_container" ref={el => this.carousel = el}>
         <div className={`carousel_slides ${transitionClass}`}>
