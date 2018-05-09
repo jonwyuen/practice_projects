@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class Header extends Component {
   authButton() {
-    return <button>Sign In</button>;
+    return this.props.authenticated ? (
+      <button onClick={() => this.props.authenticate(false)}>Sign Out</button>
+    ) : (
+      <button onClick={() => this.props.authenticate(true)}>Sign In</button>
+    );
   }
 
   render() {
@@ -23,4 +29,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    authenticated: state.authenticated
+  };
+};
+
+export default connect(mapStateToProps, actions)(Header);
