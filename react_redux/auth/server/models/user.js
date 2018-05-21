@@ -9,6 +9,8 @@ const userSchema = new Schema({
 });
 
 // on save hook, encrypt pw
+// salt + plain pw = (salt + hashed pw)
+// comparing pw when sign in: salt + submitted pw = hashed pw
 // before saving model, run this fn
 userSchema.pre("save", function(next) {
   // get access to user model
