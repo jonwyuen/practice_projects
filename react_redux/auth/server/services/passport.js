@@ -3,6 +3,17 @@ const User = require("../models/user");
 const config = require("../config");
 const JwtStragegy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+const LocalStrategy = require("passport-local");
+
+const localOptions = { usernameField: "email" };
+const localLogin = new LocalStrategy(localOptions, function(
+  email,
+  password,
+  done
+) {
+  // verify this username and pw,
+  // call done with the user if correct username and pw, else call done w/ false
+});
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
