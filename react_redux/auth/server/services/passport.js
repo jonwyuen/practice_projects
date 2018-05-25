@@ -13,6 +13,10 @@ const localLogin = new LocalStrategy(localOptions, function(
 ) {
   // verify this username and pw,
   // call done with the user if correct username and pw, else call done w/ false
+  User.findOne({ email: email }, function(err, user) {
+    if (err) return done(err);
+    if (!user) return done(null, false);
+  });
 });
 
 const jwtOptions = {
