@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER } from "./types";
+import { AUTH_USER, AUTH_ERROR } from "./types";
 
 const ROOT_URL = "http://localhost:3090";
 
@@ -22,19 +22,25 @@ export function signinUser({ email, password }) {
     // submit email/pw to server
     axios.post(`${ROOT_URL}/signin`, { email, password })
       .then(response => {
+        // if req good
+        // update state to indicate user is authenticated
         dispatch({ type: AUTH_USER });
+        // save jwt token
+        localStorage.setItem('token', response.data.token);
+        // redirect to route /feature
         browserHistory.push('/feature');
       });
       .catch(() => {
-        
+        // if req bad
+        // show error to user
+        dispatch(authError('Bad Login Info'));
       });
   }
+}
 
-  // if req good
-  // update state to indicate user is authenticated
-  // save jwt token
-  // redirect to route /feature
-
-  // if req bad
-  // show error to user
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  }
 }
