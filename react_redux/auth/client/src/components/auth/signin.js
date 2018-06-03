@@ -7,7 +7,17 @@ class Signin extends Component {
   handleFormSubmit({ email, password }) {
     console.log(email, password);
     // need to do something to log user in
-    this.props.signinUser({ email, password });
+    this.props.signinUser({ email, password }
+  }
+
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
   }
  
   render() {
@@ -34,13 +44,17 @@ class Signin extends Component {
             autoComplete="none"
           />
         </fieldset>
+        {this.renderAlert()}
         <button className="btn btn-primary" action="submit">Sign in</button>
       </form>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error }
+}
 
-export default connect(null, actions), reduxForm({
+export default connect(mapStateToProps, actions), reduxForm({
   form: 'signin'
 })(Signin);
