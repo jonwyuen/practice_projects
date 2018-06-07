@@ -54,11 +54,17 @@ class Signup extends Component {
   }
 }
 
+function validate(formProps) {
+  const errors = {};
+
+  return errors;
+}
+
 function mapStateToProps(state) {
   return { errorMessage: state.auth.errorMessage };
 }
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: "signup" })
+  reduxForm({ form: "signup", validate })
 )(Signup);
