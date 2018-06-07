@@ -55,7 +55,7 @@ class Signin extends Component {
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error };
+  return { errorMessage: state.auth.errorMessage };
 }
 
 export default compose(
