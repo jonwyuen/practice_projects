@@ -4,6 +4,46 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import * as actions from "../../actions";
 
+const fields = [
+  {
+    name: "email",
+    label: "Email",
+    type: "text"
+  },
+  {
+    name: "password",
+    label: "Password",
+    type: "password"
+  },
+  {
+    name: "passwordConfirm",
+    label: "Confirm Password",
+    type: "password"
+  }
+];
+
+const renderField = (type, field) => {
+  const { meta: { touched, error } } = field;
+  const hasDanger = touched && error ? "has-danger" : "";
+
+  return (
+    <fieldset className={`form-group ${hasDanger}`}>
+      <label>{field.label}</label>
+      <input className="form-control" type={type} {...field.input} />
+      <div className="text-help">{touched ? error : ""}</div>
+    </fieldset>
+  );
+};
+
+const formFields = fields.map(field => (
+  <Field
+    key={field.name}
+    label={field.label}
+    name={field.name}
+    component={renderField.bind(this, field.type)}
+  />
+));
+
 class Signup extends Component {
   onSubmit(formProps) {
     this.props.signupUser(formProps, () => {
@@ -24,41 +64,10 @@ class Signup extends Component {
   render() {
     // handleSubmit from redux form
     const { handleSubmit } = this.props;
-    console.log(this.props);
+
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <fieldset className="form-group">
-          <label>Email: </label>
-          <Field
-            className="form-control"
-            name="email"
-            type="text"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
-        <fieldset className="form-group">
-          <label>Password: </label>
-          <Field
-            className="form-control"
-            name="password"
-            type="password"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
-
-        <fieldset className="form-group">
-          <label>Confirm Password: </label>
-          <Field
-            className="form-control"
-            name="passwordConfirm"
-            type="password"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
-
+        {formFields}
         <div>{this.renderAlert()}</div>
         <button className="btn btn-primary" action="submit">
           Sign up
