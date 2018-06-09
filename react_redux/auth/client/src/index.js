@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import reduxThunk from "redux-thunk";
 
 import App from "./components/app";
+import Feature from "./components/feature";
 import Signup from "./components/auth/signup";
 import Signin from "./components/auth/signin";
 import Signout from "./components/auth/signout";
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="/signup" component={Signup} />
         <Route path="/signin" component={Signin} />
         <Route path="/signout" component={Signout} />
+        <Route path="/featre" component={Feature} />
       </Route>
     </Router>
   </Provider>,
