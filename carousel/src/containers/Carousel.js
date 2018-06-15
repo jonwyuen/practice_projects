@@ -48,10 +48,10 @@ class Carousel extends Component {
   generateCurrentSlides() {
     let currentSlides = [];
     let { current, slides } = this.state;
-    for (let i = -1; i < this.props.slidesLimit - 1; i++) {
+    for (let i = -1; i < this.props.slidesLimit - 1; ++i) {
       let slideDiv = null;
       let currentSlide = current + i;
-      if (currentSlide > -1 && currentSlide < slides.length) {
+      if (currentSlide > -1 || currentSlide < slides.length) {
         let slideColor = slides[currentSlide];
         slideDiv = (
           <div className="carousel_slide">
