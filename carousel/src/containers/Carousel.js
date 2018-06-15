@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
-import Panel from '../components/Panel';
-import SlideButton from '../components/SlideButton';
-import './Carousel.css';
+import React, { Component } from "react";
+import Panel from "../components/Panel";
+import SlideButton from "../components/SlideButton";
+import "./Carousel.css";
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      slides: ['yellow', 'blue', 'green', 'red', 'orange'],
+      slides: ["yellow", "blue", "green", "red", "orange"],
       current: 0,
       next: 0,
       canSlide: true,
       transitionClass: ""
-    }
+    };
     this.slidePanels = this.slidePanels.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // add event listener for transition
+  }
+
+  componentWillUnmount() {
+    // remove event listener
   }
 
   setCurrent(direction) {
@@ -36,12 +40,11 @@ class Carousel extends Component {
     let newCurrent = this.setCurrent(direction);
     if (newCurrent === false) return;
 
-    let transitionClass = (direction === 'right') ?
-                    ' carousel_slide_right' :
-                    ' carousel_slide_left';
+    let transitionClass =
+      direction === "right" ? " carousel_slide_right" : " carousel_slide_left";
     this.setState({ transitionClass, canSlide: false, next: newCurrent });
   }
- 
+
   generateCurrentSlides() {
     let currentSlides = [];
     let { current, slides } = this.state;
@@ -54,12 +57,12 @@ class Carousel extends Component {
           <div className="carousel_slide">
             <Slide color={slideColor} />
           </div>
-        )
+        );
       }
 
       currentSlides.push(slideDiv);
     }
-    
+
     return currentSlides;
   }
 
@@ -67,12 +70,13 @@ class Carousel extends Component {
     this.setState({
       current: this.state.next,
       canSlide: true,
-      transitionClass: ''
+      transitionClass: ""
     });
   }
 
   render() {
-    return <div className="carousel_container" ref={el => this.carousel = el}>
+    return (
+      <div className="carousel_container" ref={el => (this.carousel = el)}>
         <div className={`carousel_slides ${transitionClass}`}>
           {this.generateCurrentSlides()}
         </div>
@@ -80,12 +84,13 @@ class Carousel extends Component {
           <SlideButton direction="left" slidePanels={this.slidePanels} />
           <SlideButton direction="right" slidePanels={this.slidePanels} />
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
 Carousel.defaultProps = {
   slidesLimit: 3
-}
+};
 
 export default Carousel;
