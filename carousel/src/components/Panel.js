@@ -1,8 +1,8 @@
-import React from 'react';
-import './Panel.css';
+import React from "react";
+import "./Panel.css";
 
-const Slide = ({ color }) => {
-  <div class="panel" style={{ backgroundColor: `${color}`}}></div>
-}
+const Panel = ({ color }) => {
+  return <div className="panel" style={{ backgroundColor: `${color}` }} />;
+};
 
 export default Panel;

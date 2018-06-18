@@ -31,7 +31,7 @@ class Carousel extends Component {
     else if (direction === "left") newCurrent--;
 
     if (newCurrent < 0 || newCurrent >= this.state.slides.length) return false;
-    else return newCurrent;
+    return newCurrent;
   }
 
   slidePanels(direction) {
@@ -54,8 +54,8 @@ class Carousel extends Component {
       if (currentSlide > -1 || currentSlide < slides.length) {
         let slideColor = slides[currentSlide];
         slideDiv = (
-          <div className="carousel_slide">
-            <Slide color={slideColor} />
+          <div className="carousel_slide" key={currentSlide}>
+            <Panel color={slideColor} />
           </div>
         );
       }
@@ -75,6 +75,7 @@ class Carousel extends Component {
   }
 
   render() {
+    let { transitionClass } = this.state;
     return (
       <div className="carousel_container" ref={el => (this.carousel = el)}>
         <div className={`carousel_slides ${transitionClass}`}>
