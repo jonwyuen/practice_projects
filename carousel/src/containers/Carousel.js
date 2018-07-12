@@ -19,10 +19,12 @@ class Carousel extends Component {
 
   componentDidMount() {
     // add event listener for transition
+    this.carousel.addEventListener("transitionend", this.reset);
   }
 
   componentWillUnmount() {
     // remove event listener
+    this.carousel.removeEventListener("transitionend", this.reset);
   }
 
   setCurrent(direction) {
