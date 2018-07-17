@@ -31,7 +31,7 @@ class Carousel extends Component {
     let newCurrent = this.state.current;
     if (direction === "right") newCurrent++;
     else if (direction === "left") newCurrent--;
-
+    // make sure that the new current is in bounds
     if (newCurrent < 0 || newCurrent >= this.state.slides.length) return false;
     return newCurrent;
   }
