@@ -1,11 +1,20 @@
 .carousel_container {
   position: absolute;
+  width: 100vh;
+  height: 250px;
 }
 
 .carousel_slides {
+  position: absolute;
+  display: flex;
+  justify-content: center;
 }
 
 .carousel_buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .carousel_slide_right,
