@@ -19,12 +19,12 @@ class Carousel extends Component {
 
   componentDidMount() {
     // add event listener for transition
-    this.carousel.addEventListener("transitionend", this.reset);
+    this.carousel.addEventListener("transitionend", e => this.reset());
   }
 
   componentWillUnmount() {
     // remove event listener
-    this.carousel.removeEventListener("transitionend", this.reset);
+    this.carousel.removeEventListener("transitionend", e => this.reset());
   }
 
   setCurrent(direction) {
@@ -43,7 +43,9 @@ class Carousel extends Component {
     if (newCurrent === false) return;
 
     let transitionClass =
-      direction === "right" ? " carousel_slide_right" : " carousel_slide_left";
+      direction === "right"
+        ? " carousel_slides_right"
+        : " carousel_slides_left";
     this.setState({ transitionClass, canSlide: false, next: newCurrent });
   }
 
@@ -53,7 +55,7 @@ class Carousel extends Component {
     for (let i = -1; i < this.props.slidesLimit - 1; ++i) {
       let slideDiv = null;
       let currentSlide = current + i;
-      if (currentSlide > -1 || currentSlide < slides.length) {
+      if (currentSlide >= 0 || current < slides.length) {
         let slideColor = slides[currentSlide];
         slideDiv = (
           <div className="carousel_slide" key={currentSlide}>
@@ -64,7 +66,6 @@ class Carousel extends Component {
 
       currentSlides.push(slideDiv);
     }
-
     return currentSlides;
   }
 
@@ -80,7 +81,7 @@ class Carousel extends Component {
     let { transitionClass } = this.state;
     return (
       <div className="carousel_container" ref={el => (this.carousel = el)}>
-        <div className={`carousel_slides ${transitionClass}`}>
+        <div className={`carousel_slides${transitionClass}`}>
           {this.generateCurrentSlides()}
         </div>
         <div className="carousel_buttons">
