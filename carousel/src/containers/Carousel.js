@@ -28,12 +28,13 @@ class Carousel extends Component {
   }
 
   setCurrent(direction) {
-    let newCurrent = this.state.current;
-    if (direction === "right") newCurrent++;
-    else if (direction === "left") newCurrent--;
-    // make sure that the new current is in bounds
-    if (newCurrent < 0 || newCurrent >= this.state.slides.length) return false;
-    return newCurrent;
+    let { current, slides } = this.state;
+    if (direction === "right") current++;
+    else if (direction === "left") current--;
+
+    if (current < 0) current = slides.length - 1;
+    if (current >= slides.length) current = 0;
+    return current;
   }
 
   slidePanels(direction) {
@@ -52,20 +53,22 @@ class Carousel extends Component {
   generateCurrentSlides() {
     let currentSlides = [];
     let { current, slides } = this.state;
-    for (let i = -1; i < this.props.slidesLimit - 1; ++i) {
+    for (let i = -1; i < this.props.slidesLimit - 1; i++) {
       let slideDiv = null;
       let currentSlide = current + i;
-      if (currentSlide >= 0 || current < slides.length) {
-        let slideColor = slides[currentSlide];
-        slideDiv = (
-          <div className="carousel_slide" key={currentSlide}>
-            <Panel color={slideColor} />
-          </div>
-        );
-      }
+
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      let slideColor = slides[currentSlide];
+      slideDiv = (
+        <div className="carousel_slide" key={currentSlide}>
+          <Panel color={slideColor} />
+        </div>
+      );
 
       currentSlides.push(slideDiv);
     }
+    console.log(currentSlides);
     return currentSlides;
   }
 

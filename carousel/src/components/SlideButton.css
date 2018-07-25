@@ -6,4 +6,5 @@
   width: 50px;
   margin: 10px;
   cursor: pointer;
+  outline: none;
 }
