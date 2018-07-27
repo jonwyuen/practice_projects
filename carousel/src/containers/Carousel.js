@@ -68,7 +68,6 @@ class Carousel extends Component {
 
       currentSlides.push(slideDiv);
     }
-    console.log(currentSlides);
     return currentSlides;
   }
 
