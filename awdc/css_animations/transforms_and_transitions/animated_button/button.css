@@ -1,0 +1,37 @@
+body {
+  background-color: lightblue;
+}
+
+.btn-container {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  background: #fcad26;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 20px 80px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 6px #efa424;
+}
+
+.btn:hover {
+  box-shadow: 0 4px #efa424;
+  top: 2px;
+}
+
+.btn:active {
+  box-shadow: none;
+  top: 6px;
+}
