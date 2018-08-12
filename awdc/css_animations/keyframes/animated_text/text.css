@@ -1,0 +1,31 @@
+p {
+  font-size: 20px;
+  transform-origin: 0 0;
+  animation-name: animtext;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animtext {
+  0% {
+    color: red;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: yellow;
+    transform: translateX(200px) scale(2);
+  }
+  75% {
+    color: green;
+  }
+  85% {
+    color: blue;
+  }
+  100% {
+    color: purple;
+  }
+}
